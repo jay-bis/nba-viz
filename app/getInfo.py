@@ -17,8 +17,11 @@ headers = {
 # simple utility function to wrap nba_api player finder into easy, nice function
 def getIds(fullName):
     # find player id by full name
-    pd = players.find_players_by_full_name(fullName)
-    player_id = pd[0]['id']
+    try:
+        pd = players.find_players_by_full_name(fullName)
+        player_id = pd[0]['id']
+    except Exception:
+        return "error"
 
     # get the player's current team (seems quite extensive to do
     # it like this, but I don't want ppl to have to enter in

@@ -1,0 +1,61 @@
+body {
+    font-family: NBAFont !important;
+    text-shadow: #F8F8FF 1px 1px 1px !important;
+}
+
+div#loading {
+    height: 55px;
+    width: 55px;
+    margin: 20px;
+    display: none;
+    background: url(./assets/ajax-loader.gif) no-repeat;
+    cursor: wait;
+}
+
+.inline-btn {
+    top: 25px;
+    height: -moz-available;
+}
+
+.my-center {
+    display: inline;
+    float: none;
+}
+
+.flashes {
+    list-style-type: none;
+    color: red;
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+ }
+
+ @keyframes fadeInMoveUp {
+     from {
+         opacity: 0;
+         transform: translateY(0);
+     }
+
+     to {
+         opacity: 100;
+         transform: translateY(-20px);
+     }
+ }
+
+ .animated-text {
+    animation: fadeIn 1.5s;
+    animation-fill-mode: both;
+ }
+
+ .animated-img {
+     animation: fadeInMoveUp 3s;
+     animation-fill-mode: forwards;
+ }
+
+@font-face {
+    font-family: NBAFont;
+    src: url(./assets/MoonlightningItalic-7gBD.ttf);
+}
+

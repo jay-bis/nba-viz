@@ -26,20 +26,24 @@ headers = {
 # James Harden
 # team_id =1610612745, player_id=201935
 
-def create_shot_chart(pid, tid):
+def create_shot_chart(pid, tid, name):
     career = shotchartdetail.ShotChartDetail(team_id=tid, player_id=pid, headers=headers)
     shots = career.get_data_frames()[0]
 
-    cmap = plt.cm.viridis
-    joint_shot_chart = sns.jointplot(shots.LOC_X, shots.LOC_Y, stat_func=None, kind='kde', space=0, color=cmap(.1), cmap=cmap, n_levels=50)
+    cmap = plt.cm.get_cmap('gist_heat_r')
+
+    joint_shot_chart = sns.jointplot(shots.LOC_X, shots.LOC_Y, stat_func=None, kind='hex', space=0, color=cmap(.2), cmap=cmap, gridsize=26, height=8)
     joint_shot_chart.fig.set_size_inches(12,11)
     ax = joint_shot_chart.ax_joint
     fig = joint_shot_chart.fig
-    ax.set_xlim(-250, 250)
-    ax.set_ylim(350, -47.5)
-    
+
+    ax.set_xlim(-235, 235)
+    ax.set_ylim(295, -20)
+
+    ax.set_xlabel('')
+    ax.set_ylabel('')
+    ax.tick_params(labelbottom='off', labelleft='off')
+
+    ax.set_title('{} FGA, 2018-2019 Regular Season'.format(name), y=1.2)
     return create_court(ax, fig=fig)
 
-# Lauri Markkanen
-#create_shot_chart(1628374, 1610612741)
-#plt.show()

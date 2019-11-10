@@ -1,6 +1,19 @@
 <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" type="text/css" href="../static/index.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
     <body>
-        <h3>Here is your generated shot chart!</h3>
-        <img src="data:image/png;base64,{{ result }}" height="700px" width="800px">
+        <div class="container">
+            <div class="col"></div>
+            <div class="col animated-text" style="text-align: center;">
+                <h3>Here is your generated shot chart!</h3>
+                <div style="height: 80px;"></div>
+                <img class="animated-img" src="data:image/png;base64,{{ result }}" height="700px" width="800px">
+            </div>
+            <div class="col"></div>
+        </div>
+        
     </body>
 </html>

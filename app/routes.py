@@ -1,4 +1,4 @@
-from flask import render_template, flash, request, make_response, send_file
+from flask import render_template, flash, request, redirect
 from app import app
 from .forms import SearchForm
 from .shotChart import create_shot_chart
@@ -8,8 +8,6 @@ from io import BytesIO
 from urllib.parse import quote
 from base64 import b64encode
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
-
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -18,18 +16,16 @@ def index():
         return(generate_chart(search))
     return render_template('index.html', title="NBAVIZ", form=search)
 
-# @app.route('/results')
-# def search_results(search):
-#     search_string = search.data['search']
-#     return render_template('results.html', results=search_string)
-
 @app.route("/results")
 def generate_chart(search):
     player_name = search.data['search']
 
     ids = getIds(player_name)
+    if ids == "error":
+        flash("Name of player not found!")
+        return redirect("/")
 
-    fig, _ = create_shot_chart(ids['player_id'], ids['team_id'])
+    fig, _ = create_shot_chart(ids['player_id'], ids['team_id'], player_name)
     # FigureCanvas required for writing file-like objects
     canvas=FigureCanvas(fig)
     # need to convert fig created to base64 encoded value to

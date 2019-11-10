@@ -1,0 +1,27 @@
+<doctype html>
+<html>
+    <head>
+        <title>{{ title }} - Data Visualizations</title>
+    </head>
+    <body>
+        <h3>Welcome to NBAVIZ - a website for dynamically generating shot charts for NBA players.</h3>
+    
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class=flashes>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {% from "_formhelpers.html" import render_field %}
+        <form action="{{ url_for('index') }}" method="post">
+            <dl>
+                {{ render_field(form.search) }}
+            </dl>
+            <input type="submit" value="Search", placeholder="Enter player name">
+        </form>
+    </body>
+</html>
